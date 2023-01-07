@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.AdminMapper">
+    <resultMap id="BaseResultMap" type="com.example.domain.Admin">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="phone_num" jdbcType="CHAR" property="phoneNum"/>
+        <result column="email" jdbcType="CHAR" property="email"/>
+        <result column="birth" jdbcType="TIMESTAMP" property="birth"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <resultMap id="ResultMap" type="com.example.domain.Consumer" extends="BaseResultMap">
+        <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        ,username,password,sex,phone_name.email,birth,avator,create_time,update_time,
+    </sql>
+    <sql id="Blob_Column_List">
+        id
+        ,username,password,sex,phone_name.email,birth,avator,introduction,location,create_time,update_time,
+    </sql>
+    <insert id="insert" parameterType="ResultMap">
+        insert into consumer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+            <if test="userName!=null">
+                username,
+            </if>
+            <if test="password!=null">
+                password,
+            </if>
+            <if test="sex!=null">
+                sex,
+            </if>
+            <if test="phoneNum!=null">
+                phone_num,
+            </if>
+            <if test="email!=null">
+                email,
+            </if>
+            <if test="birth!=null">
+                birth,
+            </if>
+            <if test="avatar!=null">
+                avator,
+            </if>
+            <if test="introduction!=null">
+                introduction,
+            </if>
+            <if test="location!=null">
+                location,
+            </if>
+            create_time,update_time,
+        </trim>
+        <trim prefix="value(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="userName!=null">
+                #{userName},
+            </if>
+            <if test="password!=null">
+                #{password},
+            </if>
+            <if test="sex!=null">
+                #{sex},
+            </if>
+            <if test="phoneNum!=null">
+                #{phoneNum},
+            </if>
+            <if test="email!=null">
+                #{email},
+            </if>
+            <if test="birth!=null">
+                #{birth},
+            </if>
+            <if test="avatar!=null">
+                #{avatar},
+            </if>
+            <if test="introduction!=null">
+                #{introduction},
+            </if>
+            <if test="location!=null">
+                #{location},
+            </if>
+            now(),now(),
+        </trim>
+    </insert>
+    <update id="update" parameterType="ResultMap">
+        update consumer
+        <set>
+            <if test="id!=null">
+                id=#{id},
+            </if>
+            <if test="userName!=null">
+                username=#{userName},
+            </if>
+            <if test="password!=null">
+                password=#{password},
+            </if>
+            <if test="sex!=null">
+                sex=#{sex},
+            </if>
+            <if test="phoneNum!=null">
+                phone_num=#{phoneNum},
+            </if>
+            <if test="email!=null">
+                email=#{email},
+            </if>
+            <if test="birth!=null">
+                birth=#{birth},
+            </if>
+            <if test="avatar!=null">
+                avatar=#{avatar},
+            </if>
+            <if test="introduction!=null">
+                introduction=#{introduction},
+            </if>
+            <if test="location!=null">
+                location=#{location},
+            </if>
+            update_time=now(),
+        </set>
+    </update>
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete
+        consumer
+        where id=
+        #{id},
+    </delete>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMap">
+        select
+        <include refid="Blob_Column_List"/>
+        from consumer
+        where id=#{id},
+    </select>
+    <select id="selectAll" resultMap="ResultMap">
+        select
+        <include refid="Blob_Column_List"/>
+        from consumer,
+    </select>
+    <select id="selectByName" parameterType="java.lang.String" resultMap="ResultMap">
+        select
+        <include refid="Blob_Column_List"/>
+        from consumer where uaername=#{userName},
+    </select>
+    <select id="verifyPassword" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        select
+        <include refid="Blob_Column_List"/>
+        from consumer where username=#{userName} and password=#{password},
+    </select>
+</mapper>
