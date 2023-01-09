@@ -11,10 +11,11 @@
         <result column="style" jdbcType="VARCHAR" property="style"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id,title,pic,introduction,style;
+        id
+        ,title,pic,introduction,style,
     </sql>
-    <insert id="insert" parameterType="BaseResultMap">
-insert into song_list
+    <insert id="insert" parameterMap="BaseResultMap">
+        insert into song_list
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null">
                 id,
@@ -50,8 +51,8 @@ insert into song_list
             </if>
         </trim>
     </insert>
-    <update id="update" parameterType="BaseResultMap">
-update song_list
+    <update id="update" parameterMap="BaseResultMap">
+        update song_list
         <set>
             <if test="title!=null">
                 title=#{title},

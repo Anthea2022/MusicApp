@@ -2,12 +2,9 @@ package com.example.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.domain.ListSong;
-import com.example.domain.Song;
 import com.example.service.ListSongService;
-import com.example.service.SongService;
 import com.example.utils.Consts;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,9 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 
 /**
  * @author HP

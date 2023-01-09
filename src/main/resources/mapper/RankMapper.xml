@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.RankMapper">
+    <resultMap id="BaseResultMap" type="com.example.domain.Rank">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="songListId" jdbcType="INTEGER" property="songListId"/>
+        <result column="consumerId" jdbcType="INTEGER" property="consumerId"/>
+        <result column="score" jdbcType="INTEGER" property="score"/>
+    </resultMap>
+
+    <sql id="Base_Column-List">
+        id,songListId,consumerId,score;
+    </sql>
+
+    <insert id="insert" parameterMap="BaseResultMap">
+        insert into  rank
+         <trim prefix="(" suffix=")" suffixOverrides=",">
+             <if test="id!=null">
+                 id,
+             </if>
+            <if test="songListId">
+                songListId,
+            </if>
+            <if test="consumerId">
+                consumerId,
+            </if>
+            <if test="score">
+                score,
+            </if>
+         </trim>
+         <trim prefix="value(" suffix=")" suffixOverrides=",">
+             <if test="id!=null">
+                 #{id},
+             </if>
+             <if test="songListId!=null">
+                 #{songListId},
+             </if>
+             <if test="consumerId!=null">
+                 #{consumerId},
+             </if>
+             <if test="score!=null">
+                 #{score},
+             </if>
+         </trim>
+    </insert>
+
+    <select id="selectScoreSum" parameterType="java.lang.Integer" resultMap="java.lang.Integer">
+        select COALESCE(sum(score),0) as score
+        from rank
+        where songListId=#{songListId},
+    </select>
+
+    <select id="selectRankNum" parameterType="java.lang.Integer" resultMap="java.lang.Integer">
+        select COALESCE(count(id),0) as num from rank
+        where songListId=#{songListId},
+    </select>
+
+    <select id="selectByPrimaryKey" resultType="BaseResultMap" parameterType="java.lang.Integer">
+        select
+            <include refid="Base_Column_List"/>
+            from rank where id=#{id},
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+            from rank,
+    </select>
+</mapper>

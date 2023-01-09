@@ -63,7 +63,7 @@ public class SongController {
             {
                 jsonObject.put(Consts.CODE,1);
                 jsonObject.put(Consts.MSG,"保存成功");
-                jsonObject.put("avator",storeUrlPath);
+                jsonObject.put("avatar",storeUrlPath);
                 return jsonObject;
             }
             jsonObject.put(Consts.CODE,0);

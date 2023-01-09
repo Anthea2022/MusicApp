@@ -15,7 +15,7 @@
     <sql id="Base_Column_List">
         id,name,sex,pic,birth,location,introduction
     </sql>
-    <insert id="insert" parameterType="com.example.domain.Singer">
+    <insert id="insert" parameterMap="BaseResultMap">
         insert into singer
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null">
@@ -64,7 +64,7 @@
             </if>
         </trim>
     </insert>
-    <update id="update" parameterType="com.example.domain.Singer">
+    <update id="update" parameterMap="BaseResultMap">
         update singer
         <set>
             <if test="name!=null">

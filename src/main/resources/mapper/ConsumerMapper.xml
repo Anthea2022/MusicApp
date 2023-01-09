@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC
         "-//mybatis.org//DTD mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.dao.AdminMapper">
-    <resultMap id="BaseResultMap" type="com.example.domain.Admin">
+<mapper namespace="com.example.dao.ConsumerMapper">
+    <resultMap id="BaseResultMap" type="com.example.domain.Consumer">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="username" jdbcType="VARCHAR" property="userName"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -12,22 +12,18 @@
         <result column="email" jdbcType="CHAR" property="email"/>
         <result column="birth" jdbcType="TIMESTAMP" property="birth"/>
         <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
-    <resultMap id="ResultMap" type="com.example.domain.Consumer" extends="BaseResultMap">
-        <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
-        <result column="location" jdbcType="VARCHAR" property="location"/>
-    </resultMap>
     <sql id="Base_Column_List">
-        id
-        ,username,password,sex,phone_name.email,birth,avator,create_time,update_time,
+        id,username,password,sex,phone_name,email,birth,avatar,create_time,update_time,
     </sql>
     <sql id="Blob_Column_List">
-        id
-        ,username,password,sex,phone_name.email,birth,avator,introduction,location,create_time,update_time,
+        id,username,password,sex,phone_name,email,birth,avatar,introduction,location,create_time,update_time,
     </sql>
-    <insert id="insert" parameterType="ResultMap">
+    <insert id="insert" parameterMap="BaseResultMap">
         insert into consumer
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null">
@@ -52,7 +48,7 @@
                 birth,
             </if>
             <if test="avatar!=null">
-                avator,
+                avatar,
             </if>
             <if test="introduction!=null">
                 introduction,
@@ -96,7 +92,7 @@
             now(),now(),
         </trim>
     </insert>
-    <update id="update" parameterType="ResultMap">
+    <update id="update" parameterMap="BaseResultMap">
         update consumer
         <set>
             <if test="id!=null">
@@ -138,21 +134,21 @@
         where id=
         #{id},
     </delete>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Blob_Column_List"/>
         from consumer
         where id=#{id},
     </select>
-    <select id="selectAll" resultMap="ResultMap">
+    <select id="selectAll" resultMap="BaseResultMap">
         select
         <include refid="Blob_Column_List"/>
         from consumer,
     </select>
-    <select id="selectByName" parameterType="java.lang.String" resultMap="ResultMap">
+    <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Blob_Column_List"/>
-        from consumer where uaername=#{userName},
+        from consumer where username=#{userName},
     </select>
     <select id="verifyPassword" parameterType="java.util.HashMap" resultType="java.lang.Integer">
         select

@@ -22,7 +22,7 @@
     <sql id="Blob_Column-List">
         id,singer_id,name,introduction,create_time,update_time,pic,lyric,url;
     </sql>
-    <insert id="insert" parameterType="ResultMap">
+    <insert id="insert" parameterMap="ResultMap">
         insert into song
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null">
@@ -73,7 +73,7 @@
             </if>
         </trim>
     </insert>
-    <update id="update" parameterType="ResultMap">
+    <update id="update" parameterMap="ResultMap">
         update song
         <set>
             <if test="singerId!=null">

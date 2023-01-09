@@ -11,7 +11,7 @@
     <sql id="Base_Column_List">
         id,song_id,song_list_id;
     </sql>
-    <insert id="insert" parameterType="BaseResultMap">
+    <insert id="insert" parameterMap="BaseResultMap">
         insert into list_song
       <trim prefix="(" suffix=")" suffixOverrides=",">
           <if test="id!=null">
@@ -36,7 +36,7 @@
           </if>
       </trim>
     </insert>
-    <update id="update" parameterType="BaseResultMap">
+    <update id="update" parameterMap="BaseResultMap">
         update list_song
       <set>
           <if test="id!=null">
