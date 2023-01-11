@@ -23,76 +23,86 @@
     <sql id="Blob_Column_List">
         id,username,password,sex,phone_name,email,birth,avatar,introduction,location,create_time,update_time,
     </sql>
-    <insert id="insert" parameterMap="BaseResultMap">
-        insert into consumer
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id!=null">
-                id,
-            </if>
-            <if test="userName!=null">
-                username,
-            </if>
-            <if test="password!=null">
-                password,
-            </if>
-            <if test="sex!=null">
-                sex,
-            </if>
-            <if test="phoneNum!=null">
-                phone_num,
-            </if>
-            <if test="email!=null">
-                email,
-            </if>
-            <if test="birth!=null">
-                birth,
-            </if>
-            <if test="avatar!=null">
-                avatar,
-            </if>
-            <if test="introduction!=null">
-                introduction,
-            </if>
-            <if test="location!=null">
-                location,
-            </if>
-            create_time,update_time,
-        </trim>
-        <trim prefix="value(" suffix=")" suffixOverrides=",">
-            <if test="id!=null">
-                #{id},
-            </if>
-            <if test="userName!=null">
-                #{userName},
-            </if>
-            <if test="password!=null">
-                #{password},
-            </if>
-            <if test="sex!=null">
-                #{sex},
-            </if>
-            <if test="phoneNum!=null">
-                #{phoneNum},
-            </if>
-            <if test="email!=null">
-                #{email},
-            </if>
-            <if test="birth!=null">
-                #{birth},
-            </if>
-            <if test="avatar!=null">
-                #{avatar},
-            </if>
-            <if test="introduction!=null">
-                #{introduction},
-            </if>
-            <if test="location!=null">
-                #{location},
-            </if>
-            now(),now(),
-        </trim>
+    <select id="login" resultMap="BaseResultMap">
+        select *
+        from consumer
+        where username = #{username}
+    </select>
+<!--    <insert id="insert">-->
+<!--        insert into consumer-->
+<!--        <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--            <if test="consumer.id!=null">-->
+<!--                id,-->
+<!--            </if>-->
+<!--            <if test="consumer.userName!=null">-->
+<!--                username,-->
+<!--            </if>-->
+<!--            <if test="consumer.password!=null">-->
+<!--                password,-->
+<!--            </if>-->
+<!--            <if test="consumer.sex!=null">-->
+<!--                sex,-->
+<!--            </if>-->
+<!--            <if test="consumer.phoneNum!=null">-->
+<!--                phone_num,-->
+<!--            </if>-->
+<!--            <if test="consumer.email!=null">-->
+<!--                email,-->
+<!--            </if>-->
+<!--            <if test="consumer.birth!=null">-->
+<!--                birth,-->
+<!--            </if>-->
+<!--            <if test="consumer.avatar!=null">-->
+<!--                avatar,-->
+<!--            </if>-->
+<!--            <if test="consumer.introduction!=null">-->
+<!--                introduction,-->
+<!--            </if>-->
+<!--            <if test="consumer.location!=null">-->
+<!--                location,-->
+<!--            </if>-->
+<!--            create_time,update_time-->
+<!--        </trim>-->
+<!--        <trim prefix="value(" suffix=")" suffixOverrides=",">-->
+<!--            <if test="id!=null">-->
+<!--                #{id},-->
+<!--            </if>-->
+<!--            <if test="userName!=null">-->
+<!--                #{userName},-->
+<!--            </if>-->
+<!--            <if test="password!=null">-->
+<!--                #{password},-->
+<!--            </if>-->
+<!--            <if test="sex!=null">-->
+<!--                #{sex},-->
+<!--            </if>-->
+<!--            <if test="phoneNum!=null">-->
+<!--                #{phoneNum},-->
+<!--            </if>-->
+<!--            <if test="email!=null">-->
+<!--                #{email},-->
+<!--            </if>-->
+<!--            <if test="birth!=null">-->
+<!--                #{birth},-->
+<!--            </if>-->
+<!--            <if test="avatar!=null">-->
+<!--                #{avatar},-->
+<!--            </if>-->
+<!--            <if test="introduction!=null">-->
+<!--                #{introduction},-->
+<!--            </if>-->
+<!--            <if test="location!=null">-->
+<!--                #{location},-->
+<!--            </if>-->
+<!--            now(),now()-->
+<!--        </trim>-->
+<!--    </insert>-->
+    <insert id="insert">
+        insert into consumer (id, username, password, sex, phone_num, email, birth, introduction, location, create_time, update_time, avatar)
+        values (#{id}, #{userName}, #{password}, #{sex}, #{phoneNum}, #{email}, #{birth}, #{introduction}, #{location}, #{createTime}, #{updateTime}, #{avatar})
     </insert>
-    <update id="update" parameterMap="BaseResultMap">
+
+    <update id="update" parameterType="com.example.domain.Consumer">
         update consumer
         <set>
             <if test="id!=null">
@@ -129,7 +139,7 @@
         </set>
     </update>
     <delete id="delete" parameterType="java.lang.Integer">
-        delete
+        delete from
         consumer
         where id=
         #{id},

@@ -10,11 +10,11 @@
         <result column="score" jdbcType="INTEGER" property="score"/>
     </resultMap>
 
-    <sql id="Base_Column-List">
+    <sql id="Base_Column_List">
         id,songListId,consumerId,score;
     </sql>
 
-    <insert id="insert" parameterMap="BaseResultMap">
+    <insert id="insert" parameterType="com.example.domain.Rank">
         insert into  rank
          <trim prefix="(" suffix=")" suffixOverrides=",">
              <if test="id!=null">
@@ -46,18 +46,18 @@
          </trim>
     </insert>
 
-    <select id="selectScoreSum" parameterType="java.lang.Integer" resultMap="java.lang.Integer">
+    <select id="selectScoreSum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         select COALESCE(sum(score),0) as score
         from rank
         where songListId=#{songListId},
     </select>
 
-    <select id="selectRankNum" parameterType="java.lang.Integer" resultMap="java.lang.Integer">
+    <select id="selectRankNum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         select COALESCE(count(id),0) as num from rank
         where songListId=#{songListId},
     </select>
 
-    <select id="selectByPrimaryKey" resultType="BaseResultMap" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
             <include refid="Base_Column_List"/>
             from rank where id=#{id},

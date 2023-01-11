@@ -12,7 +12,7 @@ public interface ListSongService {
 
     public boolean update(ListSong listSong);
 
-    public boolean delete(Integer id);
+    public boolean delete(Integer songId);
 
     public boolean deleteBySongIdAndSongListId(Integer songId,Integer songListId);
 

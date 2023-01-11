@@ -28,8 +28,8 @@ public class ListSongServiceImpl implements ListSongService {
     }
 
     @Override
-    public boolean delete(Integer id) {
-        return listSongMapper.delete(id)>0;
+    public boolean delete(Integer songId) {
+        return listSongMapper.delete(songId)>0;
     }
 
     @Override

@@ -72,8 +72,8 @@ public class ListSongController {
     @RequestMapping(value="/delete",method = RequestMethod.POST)
     public Object delete(HttpServletRequest httpServletRequest)
     {
-        String id=httpServletRequest.getParameter("id").trim();
-        return listSongService.delete(Integer.parseInt(id));
+        String songId=httpServletRequest.getParameter("songId").trim();
+        return listSongService.delete(Integer.parseInt(songId));
     }
 
     @RequestMapping(value="/deleteBySongIdAndSongListId",method = RequestMethod.POST)

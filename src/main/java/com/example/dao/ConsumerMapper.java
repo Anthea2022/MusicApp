@@ -22,5 +22,7 @@ public interface ConsumerMapper {
 
     public Consumer selectByName(String name);
 
-    public int verifyPassword(String name,String password);
+    public int verifyPassword(String username, String password);
+
+    public List<Consumer> login(String username);
 }

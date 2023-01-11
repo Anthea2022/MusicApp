@@ -3,7 +3,6 @@ package com.example.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.example.service.AdminService;
 import com.example.utils.Consts;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,13 +17,16 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    private AdminService adminService;
+    private final AdminService adminService;
+
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
+    }
 
     /**
      * 判断是否登录成功
      */
-    @RequestMapping(value="/admin/login/status",method= RequestMethod.POST)
+    @RequestMapping(value="/login/status",method= RequestMethod.POST)
     public Object loginStatus(HttpServletRequest httpServletRequest, HttpSession httpSession)
     {
         JSONObject jsonObject=new JSONObject();

@@ -4,8 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.domain.Rank;
 import com.example.service.RankService;
 import com.example.utils.Consts;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,10 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/rank")
 public class RankController {
-    @Autowired
-    private RankService rankService;
+    private final RankService rankService;
 
-    @RequestMapping (value="/insert",method = RequestMethod.POST)
+    public RankController(RankService rankService) {
+        this.rankService = rankService;
+    }
+
+
+    @RequestMapping (value="/add",method = RequestMethod.POST)
     public Object addRank(HttpServletRequest httpServletRequest)
     {
         JSONObject jsonObject=new JSONObject();

@@ -16,4 +16,6 @@ public interface RankMapper {
     public int selectScoreNum(Integer songListId);
 
     public int selectRankNum(Integer songListId);
+
+    public int getRankOfSongListId(Integer songListId);
 }

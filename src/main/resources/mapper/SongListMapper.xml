@@ -3,7 +3,7 @@
         "-//mybatis.org//DTD mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dao.SongListMapper">
-    <resultMap id="BaseResultMap" type="com.example.domain.Song">
+    <resultMap id="BaseResultMap" type="com.example.domain.SongList">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="pic" jdbcType="VARCHAR" property="pic"/>
@@ -12,9 +12,9 @@
     </resultMap>
     <sql id="Base_Column_List">
         id
-        ,title,pic,introduction,style,
+        ,title,pic,introduction,style
     </sql>
-    <insert id="insert" parameterMap="BaseResultMap">
+    <insert id="insert" parameterType="com.example.domain.SongList">
         insert into song_list
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null">
@@ -51,7 +51,7 @@
             </if>
         </trim>
     </insert>
-    <update id="update" parameterMap="BaseResultMap">
+    <update id="update" parameterType="com.example.domain.SongList">
         update song_list
         <set>
             <if test="title!=null">
@@ -78,7 +78,7 @@
             <include refid="Base_Column_List"/>
             from song_list where id=#{id}
     </select>
-    <select id="selectAll" resultMap="com.example.domain.SongList">
+    <select id="selectAll" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List"/>
             from song_list

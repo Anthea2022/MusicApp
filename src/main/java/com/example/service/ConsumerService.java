@@ -21,5 +21,7 @@ public interface ConsumerService {
 
     public Consumer selectByName(String name);
 
-    public boolean verifyPassword(String name, String password);
+    public boolean verifyPassword(String username, String password);
+
+    public List<Consumer> login(String username);
 }

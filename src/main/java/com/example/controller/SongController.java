@@ -77,6 +77,19 @@ public class SongController {
         }
     }
 
+    @RequestMapping(value = "/selectById",method = RequestMethod.GET)
+    public Object selectById(HttpServletRequest httpServletRequest)
+    {
+        String id=httpServletRequest.getParameter("id").trim();
+        return songService.selectByPrimaryKey(Integer.parseInt(id));
+    }
+
+    @RequestMapping(value = "/selectAll",method = RequestMethod.GET)
+    public Object selectAll(HttpServletRequest httpServletRequest)
+    {
+        return songService.selectAll();
+    }
+
     @RequestMapping(value="/selectLikeName",method = RequestMethod.GET)
     public Object selectLikeName(HttpServletRequest httpServletRequest)
     {

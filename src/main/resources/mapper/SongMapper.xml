@@ -19,10 +19,10 @@
     <sql id="Base_Column_List">
         id,singer_id,name,introduction,create_time,update_time,pic,url;
     </sql>
-    <sql id="Blob_Column-List">
+    <sql id="Blob_Column_List">
         id,singer_id,name,introduction,create_time,update_time,pic,lyric,url;
     </sql>
-    <insert id="insert" parameterMap="ResultMap">
+    <insert id="insert" parameterType="com.example.domain.SongList">
         insert into song
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null">
@@ -73,7 +73,7 @@
             </if>
         </trim>
     </insert>
-    <update id="update" parameterMap="ResultMap">
+    <update id="update" parameterType="com.example.domain.SongList">
         update song
         <set>
             <if test="singerId!=null">
@@ -99,7 +99,7 @@
         where id=#{id}
     </update>
     <delete id="delete" parameterType="java.lang.Integer">
-        delete song
+        delete from song
   where id=#{id}
     </delete>
     <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer">

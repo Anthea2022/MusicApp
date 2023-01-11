@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author HP
  */
 @SpringBootApplication
-@MapperScan("com.example")
+@MapperScan("com.example.dao")
 public class MusicAppApplication {
 
     public static void main(String[] args) {

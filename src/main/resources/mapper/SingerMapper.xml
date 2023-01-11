@@ -15,7 +15,7 @@
     <sql id="Base_Column_List">
         id,name,sex,pic,birth,location,introduction
     </sql>
-    <insert id="insert" parameterMap="BaseResultMap">
+    <insert id="insert" parameterType="com.example.domain.Singer">
         insert into singer
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null">
@@ -64,7 +64,7 @@
             </if>
         </trim>
     </insert>
-    <update id="update" parameterMap="BaseResultMap">
+    <update id="update" parameterType="com.example.domain.Singer">
         update singer
         <set>
             <if test="name!=null">
@@ -89,7 +89,7 @@
         where id=#{id}
     </update>
     <delete id="delete" parameterType="java.lang.Integer">
-        delete singer
+        delete from singer
   where id=#{id}
     </delete>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">

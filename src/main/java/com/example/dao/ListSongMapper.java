@@ -14,7 +14,7 @@ public interface ListSongMapper {
 
     public int update(ListSong listSong);
 
-    public int delete(Integer id);
+    public int delete(Integer songId);
 
     public int deleteBySongIdAndSongListId(Integer songId,Integer songListId);
 

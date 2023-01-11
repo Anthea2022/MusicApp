@@ -11,7 +11,7 @@
     <sql id="Base_Column_List">
         id,song_id,song_list_id;
     </sql>
-    <insert id="insert" parameterMap="BaseResultMap">
+    <insert id="insert" parameterType="com.example.domain.ListSong">
         insert into list_song
       <trim prefix="(" suffix=")" suffixOverrides=",">
           <if test="id!=null">
@@ -36,7 +36,7 @@
           </if>
       </trim>
     </insert>
-    <update id="update" parameterMap="BaseResultMap">
+    <update id="update" parameterType="com.example.domain.ListSong">
         update list_song
       <set>
           <if test="id!=null">
@@ -51,27 +51,23 @@
       </set>
     </update>
     <delete id="delete" parameterType="java.lang.Integer">
-        delete list_song
-        where id=#{id},
-    </delete>
-    <delete id="deleteBySongIdAndSongListId" parameterType="java.util.HashMap">
-        delete list_song
-        where song_id=#{songId} and song_list_id=#{songListId},
+        delete from list_song
+        where song_id=#{songId}
     </delete>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List"/>
                 from list_song
-                where id=#{id},
+                where id=#{id}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List"/>
-                from list_song,
+                from list_song
     </select>
     <select id="selectBySongListId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List"/>
-            from list_song where song_list_id=#{songListId},
+            from list_song where song_list_id=#{songListId}
     </select>
 </mapper>
