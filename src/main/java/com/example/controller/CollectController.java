@@ -53,13 +53,13 @@ public class CollectController {
         return jsonObject;
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public Object deleteCommit(HttpServletRequest httpServletRequest) {
         String id = httpServletRequest.getParameter("id").trim();
         return collectService.delete(Integer.parseInt(id));
     }
 
-    @RequestMapping(value = "/deleteByUserIdAndSongId",method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteByUserIdAndSongId",method = RequestMethod.POST)
     public Object deleteByUserIdAndSongId(HttpServletRequest httpServletRequest)
     {
         String userId=httpServletRequest.getParameter("userId").trim();

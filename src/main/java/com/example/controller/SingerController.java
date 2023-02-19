@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.domain.Singer;
 import com.example.service.SingerService;
 import com.example.utils.Consts;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,8 +26,11 @@ import java.util.Date;
 @RequestMapping("/singer")
 public class SingerController {
 
-    @Autowired
-    private SingerService singerService;
+    private final SingerService singerService;
+
+    public SingerController(SingerService singerService) {
+        this.singerService = singerService;
+    }
 
     @RequestMapping(value="/add",method = RequestMethod.POST)
     public Object addSinger(HttpServletRequest httpServletRequest)
@@ -104,7 +106,7 @@ public class SingerController {
     }
 
 
-    @RequestMapping(value = "/delete",method = RequestMethod.GET)
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public Object deleteSinger(HttpServletRequest httpServletRequest)
     {
         JSONObject jsonObject=new JSONObject();

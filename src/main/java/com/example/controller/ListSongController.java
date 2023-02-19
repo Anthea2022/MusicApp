@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.domain.ListSong;
 import com.example.service.ListSongService;
 import com.example.utils.Consts;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +18,13 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/listSong")
 public class ListSongController {
-    @Autowired
-    private ListSongService listSongService;
+
+    private final ListSongService listSongService;
+
+    public ListSongController(ListSongService listSongService) {
+        this.listSongService = listSongService;
+    }
+
 
     @RequestMapping(value="/add",method = RequestMethod.POST)
     public Object addSong(HttpServletRequest httpServletRequest, @RequestParam("file") MultipartFile multipartFile)

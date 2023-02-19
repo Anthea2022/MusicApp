@@ -117,7 +117,7 @@ public class CommitController {
         return commitService.selectBySongId(Integer.parseInt(songListId));
     }
 
-    @RequestMapping(value="/like",method = RequestMethod.POST)
+    @RequestMapping(value="/like",method = RequestMethod.GET)
     public Object like(HttpServletRequest httpServletRequest)
     {
         JSONObject jsonObject=new JSONObject();

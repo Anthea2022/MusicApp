@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.domain.SongList;
 import com.example.service.SongListService;
 import com.example.utils.Consts;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,8 +22,12 @@ import java.io.IOException;
 @RequestMapping("/songList")
 public class SongListController {
 
-    @Autowired
-    private SongListService songListService;
+    private final SongListService songListService;
+
+    public SongListController(SongListService songListService) {
+        this.songListService = songListService;
+    }
+
 
     @RequestMapping(value="/add",method = RequestMethod.POST)
     public Object addSongList(HttpServletRequest httpServletRequest)
