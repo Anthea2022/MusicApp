@@ -69,7 +69,7 @@
                 #{lyric},
             </if>
             <if test="url!=null">
-                #{url},
+                #{url}
             </if>
         </trim>
     </insert>
@@ -93,7 +93,7 @@
                 lyric=#{lyric},
             </if>
             <if test="url!=null">
-                url=#{url},
+                url=#{url}
             </if>
         </set>
         where id=#{id}

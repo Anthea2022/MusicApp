@@ -17,7 +17,7 @@
         id,user_id,song_id,song_list_id,content,create_time,type,up;
     </sql>
     <insert id="insert" parameterType="com.example.domain.Commit">
-        insert into commit
+        insert into comment
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null">
                 id,
@@ -34,7 +34,7 @@
             <if test="content!=null">
                 content,
             </if>
-            create_time
+            create_time,
             <if test="type!=null">
                 type,
             </if>
@@ -68,7 +68,7 @@
         </trim>
     </insert>
     <update id="update" parameterType="com.example.domain.Commit">
-        update commit
+        update comment
          <set>
              <if test="id!=null">
                  id=#{id},
@@ -87,31 +87,31 @@
                 type=#{type},
             </if>
             <if test="up!=null">
-                up=#{up},
+                up=#{up}
             </if>
          </set>
     </update>
-    <delete id="delete" parameterType="com.example.domain.Commit">
-        delete from commit where id=#{id},
+    <delete id="delete">
+        delete from comment where id = #{id}
     </delete>
     <select id="selectById" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List"/>
-            from commit where id=#{id}
+            from comment where id=#{id}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List"/>
-            from commit
+            from comment
     </select>
     <select id="selectBySongId" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List"/>
-            from commit where song_id=#{songId}
+            from comment where song_id=#{songId}
     </select>
     <select id="selectBySongListId" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List"/>
-            from commit where song_list_id=#{songListId}
+            from comment where song_list_id=#{songListId}
     </select>
 </mapper>

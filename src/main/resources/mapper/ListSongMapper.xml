@@ -32,7 +32,7 @@
               #{songId},
           </if>
           <if test="songListId!=null">
-              #{songListId},
+              #{songListId}
           </if>
       </trim>
     </insert>
@@ -46,7 +46,7 @@
               song_id=#{songId},
           </if>
           <if test="songListId!=null">
-              song_list_id=#{songListId},
+              song_list_id=#{songListId}
           </if>
       </set>
     </update>

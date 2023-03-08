@@ -41,7 +41,7 @@
                  #{consumerId},
              </if>
              <if test="score!=null">
-                 #{score},
+                 #{score}
              </if>
          </trim>
     </insert>
@@ -49,23 +49,23 @@
     <select id="selectScoreSum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         select COALESCE(sum(score),0) as score
         from rank
-        where songListId=#{songListId},
+        where songListId=#{songListId}
     </select>
 
     <select id="selectRankNum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         select COALESCE(count(id),0) as num from rank
-        where songListId=#{songListId},
+        where songListId=#{songListId}
     </select>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
             <include refid="Base_Column_List"/>
-            from rank where id=#{id},
+            from rank where id=#{id}
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List"/>
-            from rank,
+            from rank
     </select>
 </mapper>

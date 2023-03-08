@@ -13,7 +13,7 @@
         <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id,name,sex,pic,birth,location,introduction
+        id,name,sex,pic,birth,location,introduction;
     </sql>
     <insert id="insert" parameterType="com.example.domain.Singer">
         insert into singer
@@ -60,7 +60,7 @@
                 #{location},
             </if>
             <if test="introduction!=null">
-                #{introduction},
+                #{introduction}
             </if>
         </trim>
     </insert>
