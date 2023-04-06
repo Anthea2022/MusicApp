@@ -115,7 +115,7 @@
     <select id="selectLikeName" resultMap="ResultMap" parameterType="java.lang.String">
         select
         <include refid="Blob_Column_List"/>
-        from song where name like #{name}
+        from song where name like concat('%', #{name}, '%')
     </select>
     <select id="selectBySingerId" resultMap="ResultMap" parameterType="java.lang.Integer">
         select
